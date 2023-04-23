@@ -10,7 +10,7 @@ const helmet = require("helmet");
 const RateLimit = require("express-rate-limit");
 const limiter = RateLimit({
   windowMs: 60 * 1000, // 1 minute in ms
-  max: 20,
+  max: 30,
 });
 
 const indexRouter = require("./routes/index");
