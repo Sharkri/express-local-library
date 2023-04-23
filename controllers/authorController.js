@@ -80,6 +80,8 @@ exports.author_create_post = [
       date_of_death,
     });
 
+    console.log(author);
+
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/errors messages.
       res.render("author_form", {

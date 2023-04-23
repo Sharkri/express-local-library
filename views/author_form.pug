@@ -31,7 +31,7 @@ block content
         type="date",
         placeholder="dd/mm/yyyy",
         name="date_of_birth",
-        value=author ? author.date_of_birth : ""
+        value=author ? author.formatted.date_of_birth : ""
       )
 
       br
@@ -41,7 +41,7 @@ block content
         type="date",
         placeholder="dd/mm/yyyy",
         name="date_of_death",
-        value=author ? author.date_of_death : ""
+        value=author ? author.formatted.date_of_death : ""
       )
 
     button.btn.btn-primary(type="submit") Submit

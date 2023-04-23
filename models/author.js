@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const formatDate = require("../helpers/formatDate");
+const { DateTime } = require("luxon");
 
 const Schema = mongoose.Schema;
 
@@ -28,6 +29,19 @@ AuthorSchema.virtual("name").get(function () {
 AuthorSchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
   return `/catalog/author/${this._id}`;
+});
+
+// returns date of birth/death in YYYY-MM-DD
+AuthorSchema.virtual("formatted").get(function () {
+  return {
+    date_of_birth: this.date_of_birth
+      ? DateTime.fromJSDate(new Date(this.date_of_death)).toFormat("yyyy-MM-dd")
+      : "",
+
+    date_of_death: this.date_of_death
+      ? DateTime.fromJSDate(new Date(this.date_of_death)).toFormat("yyyy-MM-dd")
+      : "",
+  };
 });
 
 AuthorSchema.virtual("lifespan").get(function () {
