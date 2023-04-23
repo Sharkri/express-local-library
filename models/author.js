@@ -35,7 +35,7 @@ AuthorSchema.virtual("url").get(function () {
 AuthorSchema.virtual("formatted").get(function () {
   return {
     date_of_birth: this.date_of_birth
-      ? DateTime.fromJSDate(new Date(this.date_of_death)).toFormat("yyyy-MM-dd")
+      ? DateTime.fromJSDate(new Date(this.date_of_birth)).toFormat("yyyy-MM-dd")
       : "",
 
     date_of_death: this.date_of_death

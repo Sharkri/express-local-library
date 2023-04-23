@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const formatDate = require("../helpers/formatDate");
-
+const { DateTime } = require("luxon");
 const Schema = mongoose.Schema;
 
 const BookInstanceSchema = new Schema({
@@ -23,6 +23,13 @@ BookInstanceSchema.virtual("url").get(function () {
 
 BookInstanceSchema.virtual("due_back_formatted").get(function () {
   return formatDate(this.due_back);
+});
+
+// returns due_back in YYYY-MM-DD
+BookInstanceSchema.virtual("due_back_yyyy_mm_dd").get(function () {
+  return this.due_back
+    ? DateTime.fromJSDate(new Date(this.due_back)).toFormat("yyyy-MM-dd")
+    : "";
 });
 
 // Export model
